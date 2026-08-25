@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root[data-theme="light"] {
+  --bg: #FAFAF8;
+  --text: #1A1A1A;
+  --text-muted: #5A5A52;
+  --surface: #FFFFFF;
+  --border: #E5E5DE;
+  --accent: #F2B705;
+  --accent-red: #E14434;
+  --accent-blue: #3B82C4;
+  --glow: rgba(242, 183, 5, 0.18);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0A0A0A;
+  --text: #F2F2F2;
+  --text-muted: #A0A09A;
+  --surface: #141414;
+  --border: #262626;
+  --accent: #FFD447;
+  --accent-red: #FF5B47;
+  --accent-blue: #5AA6E0;
+  --glow: rgba(255, 212, 71, 0.14);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-red: var(--accent-red);
+  --color-accent-blue: var(--accent-blue);
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Butter-smooth scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--border);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
+}
+
+/* GPU-accelerate all sections for jank-free scrolling */
+section {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: #111;
+}
+
+.hook-cursor {
+  cursor: crosshair;
+}
+
+/* Keeps the reveal layer hidden until the cursor-mask ticker paints it */
+.mask-layer {
+  -webkit-mask-image: radial-gradient(circle at 0 0, transparent 0);
+  mask-image: radial-gradient(circle at 0 0, transparent 0);
+}
+
+/* ===== Dark-mode particles (legacy — now canvas-based) ===== */
+
+.blob-blur {
+  position: fixed;
+  z-index: -2;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* ===== Menu word hover: grow + red/blue lines around the word ===== */
+.menu-grow {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+}
+.menu-grow::before,
+.menu-grow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.menu-grow::before {
+  top: -6px;
+  background: var(--accent-red);
+  transform-origin: right;
+}
+.menu-grow::after {
+  bottom: -6px;
+  background: var(--accent-blue);
+  transform-origin: left;
+}
+.menu-grow:hover {
+  transform: scale(1.12);
+  color: var(--accent);
+}
+.menu-grow:hover::before,
+.menu-grow:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===== Hover underline (nav + text links) ===== */
+.link-line {
+  position: relative;
+}
+.link-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-line:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===== Badge / pill ===== */
+.pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.pill:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ===== Card hover yellow sweep (Skills) ===== */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: translateX(-101%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.skill-card:hover::before {
+  transform: translateX(0);
+}
+.skill-card > * {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+.skill-card:hover > *,
+.skill-card:hover .skill-name,
+.skill-card:hover .skill-cat,
+.skill-card:hover .skill-level,
+.skill-card:hover .skill-dot {
+  color: #111 !important;
+}
+
+/* ===== Hero "YASHODYA." hover: letters flip red/blue with thin outline ===== */
+.hero-letter {
+  transition:
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    -webkit-text-stroke-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-lockup:hover .hero-letter:nth-child(odd) {
+  color: transparent;
+  -webkit-text-stroke: 1.2px var(--accent-red);
+  text-shadow: 0 0 8px rgba(225, 68, 52, 0.25);
+}
+.hero-lockup:hover .hero-letter:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1.2px var(--accent-blue);
+  text-shadow: 0 0 8px rgba(59, 130, 196, 0.25);
+}
+
+/* ===== Readable text over photos: halo in the page bg color, no box ===== */
+.hero-ink {
+  text-shadow:
+    0 0 3px var(--bg),
+    0 0 10px var(--bg),
+    0 0 3px var(--bg);
+}
+
+/* ===== Tech pill grid + floating animation ===== */
+.tech-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tech-pill {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.3rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  background: transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s;
+  animation: pill-float 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.35s);
+}
+
+/* Each pill glows with its own brand color at rest */
+.tech-pill::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  background: var(--pill-color);
+  opacity: 0.08;
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+
+/* Floating keyframes */
+@keyframes pill-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+/* Sequential colour-wave on hover over the grid */
+.tech-pill-grid:hover .tech-pill {
+  animation: pill-highlight 0.6s ease calc(var(--i) * 0.1s) forwards,
+             pill-float 3s ease-in-out infinite;
+}
+
+@keyframes pill-highlight {
+  0%   { color: var(--text-muted); border-color: var(--border); background: transparent; }
+  50%  { color: #fff; border-color: var(--accent-red); background: var(--accent-red); }
+  100% { color: var(--pill-color); border-color: var(--pill-color); background: color-mix(in srgb, var(--pill-color) 18%, transparent); }
+}
+
+/* Individual pill hover: red background */
+.tech-pill:hover {
+  color: #fff !important;
+  border-color: var(--accent-red) !important;
+  background: var(--accent-red) !important;
+  box-shadow: 0 0 22px rgba(225, 68, 52, 0.35), 0 0 44px rgba(225, 68, 52, 0.12);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.tech-pill:hover::before {
+  opacity: 0.25;
+}
+
+/* ===== Marquee pill (bigger, themed hover) ===== */
+.marquee-pill {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.2rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: default;
+  transition:
+    color 0.3s,
+    border-color 0.3s,
+    background 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s;
+}
+
+/* Random red or blue per pill via --hue */
+.marquee-pill:hover {
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+}
+.mp-red:hover {
+  border-color: var(--accent-red) !important;
+  background: var(--accent-red) !important;
+  box-shadow: 0 0 18px rgba(225, 68, 52, 0.3), 0 0 36px rgba(225, 68, 52, 0.1);
+}
+.mp-blue:hover {
+  border-color: var(--accent-blue) !important;
+  background: var(--accent-blue) !important;
+  box-shadow: 0 0 18px rgba(59, 130, 196, 0.3), 0 0 36px rgba(59, 130, 196, 0.1);
+}
