@@ -5,7 +5,17 @@ import profile from '../assets/profile.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const STACK = ['Python', 'Java', 'C', 'OpenCV', 'MediaPipe', 'React']
+const STACK = [
+  { name: 'Python',   color: '#3776AB' },
+  { name: 'Java',     color: '#F89820' },
+  { name: 'C',        color: '#A8B9CC' },
+  { name: 'OpenCV',   color: '#5C3EE8' },
+  { name: 'MediaPipe', color: '#0097A7' },
+  { name: 'React',    color: '#61DAFB' },
+  { name: 'Git',      color: '#F05032' },
+  { name: 'HTML',     color: '#E34F26' },
+  { name: 'CSS',      color: '#1572B6' },
+]
 
 export default function About() {
   const sectionRef = useRef(null)
@@ -17,7 +27,7 @@ export default function About() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const stage = stageRef.current
-      const HOLE_Y = 40 // distance from stage top to card top (marginTop) — where the string ties
+      const HOLE_Y = 40
       const startY = -Math.max(stage.offsetHeight, 480) - 40
 
       const drop = gsap.timeline({
@@ -87,7 +97,7 @@ export default function About() {
         0.1
       )
         .from('.about-p', { y: 26, opacity: 0, stagger: 0.12, duration: 0.6 }, '-=0.5')
-        .from('.about-pill', {
+        .from('.tech-pill', {
           y: 16,
           opacity: 0,
           stagger: 0.07,
@@ -118,26 +128,34 @@ export default function About() {
           </h2>
 
           <p className="about-p mt-8 text-lg leading-relaxed text-muted sm:text-xl">
-            I&apos;m First-year BHICT undergraduate with a curious mind and a habit of asking, “What if we could make this better?”🚀
-            I&apos;m passionate about AI, healthcare, and building technology that actually feels useful to people. 
-            I love working with a team, learning new things, turning ideas into projects, and occasionally breaking things just to figure out how they work.😄
-            My goal is to create healthcare technology that is inclusive, accessible, and genuinely human.
-            Still learning. Still building. Still curious.
-            And I am just getting started!!🤖
-
+            I&apos;m a First-year BHICT undergraduate with a curious mind and a habit of
+            asking, &ldquo;What if we could make this better?&rdquo; 🚀
           </p>
+
           <p className="about-p mt-5 text-lg leading-relaxed text-muted sm:text-xl">
-             My goal is to create healthcare technology that is inclusive, accessible, and genuinely human!!
-             Still learning. Still building. Still curious.
+            I&apos;m passionate about AI, healthcare, and building technology that actually
+            feels useful to people. I love working with a team, learning new things,
+            turning ideas into projects, and occasionally breaking things just to figure
+            out how they work. 😄
+          </p>
+
+          <p className="about-p mt-5 text-lg leading-relaxed text-muted sm:text-xl">
+            My goal is to create healthcare technology that is inclusive, accessible,
+            and genuinely human. Still learning. Still building. Still curious.
+            And I am just getting started!! 🤖
           </p>
 
           <p className="about-p mt-9 mb-4 font-mono text-[0.75rem] uppercase tracking-[0.2em] text-muted">
             Primary Tech Stack
           </p>
-          <div className="flex flex-wrap gap-2">
-            {STACK.map((item) => (
-              <span key={item} className="about-pill pill">
-                {item}
+          <div className="tech-pill-grid">
+            {STACK.map((item, i) => (
+              <span
+                key={item.name}
+                className="tech-pill"
+                style={{ '--pill-color': item.color, '--i': i }}
+              >
+                {item.name}
               </span>
             ))}
           </div>
@@ -162,7 +180,7 @@ export default function About() {
             />
           </div>
 
-          {/* drop wrapper — the full ID card, hanging on the string */}
+          {/* drop wrapper */}
           <div ref={dropRef} className="relative" style={{ marginTop: '40px' }}>
             <div
               ref={swayRef}
