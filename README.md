@@ -1,4 +1,4 @@
-# 🕷️ Spyderr
+![Spyderr Hero Section](./docs/hero-screenshot.png)
 
 > "With great portfolio comes great responsibility."
 
@@ -15,14 +15,7 @@ swinging fast, building fresh, and refusing to sit still.
 
 No radioactive spider needed. Just React, GSAP, and a lot of coffee. ☕
 
-![Spyderr Hero Section](./docs/hero-screenshot.png)
-=======
-# Spyderr
-Spider - man portfolio
->>>>>>> 4fd5956a6c1f3e8a1e4ac7fb5c2ba4e9f44bc095
-![Spyderr Hero Section](./docs/hero-screenshot.png)
-=======
----
+
 
 ## 🕸️ Built With
 
@@ -46,4 +39,4 @@ Swing by anytime.
 ---
 
 *Built in 26 days. No spider-sense required - just discipline.* 🕷️
->>>>>>> 8852ee63512c030d7494d989b47648e4356b286b
+
