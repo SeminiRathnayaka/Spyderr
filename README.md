@@ -1,22 +1,49 @@
-<<<<<<< HEAD
-# React + Vite
+# 🕷️ Spyderr
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> "With great portfolio comes great responsibility."
 
-Currently, two official plugins are available:
+**Started:** July 31, 2026 - the Brand New Day hit theatres  
+**Finished:** August 26, 2026
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🎬 Origin Story
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+While the world was watching Peter Parker start his *Brand New Day*, 
+I started mine - as **Spyderr**, a portfolio site with the same energy: 
+swinging fast, building fresh, and refusing to sit still.
 
-## Expanding the Oxlint configuration
+No radioactive spider needed. Just React, GSAP, and a lot of coffee. ☕
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+![Spyderr Hero Section](./docs/hero-screenshot.png)
 =======
 # Spyderr
 Spider - man portfolio
 >>>>>>> 4fd5956a6c1f3e8a1e4ac7fb5c2ba4e9f44bc095
 ![Spyderr Hero Section](./docs/hero-screenshot.png)
+=======
+---
+
+## 🕸️ Built With
+
+- ⚛️ React
+- ✨ GSAP (for that smooth, web-slinging animation feel)
+- 🎨 Custom design ! no templates, no shortcuts
+
+---
+
+## 🚀 About This Project
+
+A personal portfolio built to show real work, not just claims. 
+Every section, every animation, every line of code — spun by hand.
+
+---
+
+## 📬 Connect
+
+Swing by anytime.
+
+---
+
+*Built in 26 days. No spider-sense required - just discipline.* 🕷️
+>>>>>>> 8852ee63512c030d7494d989b47648e4356b286b
