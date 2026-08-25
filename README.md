@@ -19,3 +19,4 @@ If you are developing a production application, we recommend using TypeScript wi
 # Spyderr
 Spider - man portfolio
 >>>>>>> 4fd5956a6c1f3e8a1e4ac7fb5c2ba4e9f44bc095
+![Spyderr Hero Section](./docs/hero-screenshot.png)
